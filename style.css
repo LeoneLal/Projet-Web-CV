@@ -52,7 +52,7 @@ p{
     font-family: 'Roboto Condensed', sans-serif;
 }
 #accueil{
-    background-image: url(road.jpg);
+    background-image: url(photos/road.jpg);
     background-size: contain;
     padding-bottom: 20%
 }
@@ -166,6 +166,31 @@ h3{
 }
 #Education > div{
     width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #2d2d28;
+    padding-left: 5px;
+}
+#projet{
+    background-color: #2d2d28;
+    padding-bottom: 5%;
+}
+#projet img{
+    height: 200px;
+    width: auto;
+}
+#projet p{
+    text-align: center;
+    font-size: 120%;
+}
+#projet div div{
+    display: inline-block;
+    background-color: #30a1aa;
+    padding: 2%;
+    margin: 2%;
+}
+#projet > div{
+    width: 68%;
     margin-right: auto;
     margin-left: auto;
     background-color: #2d2d28;
