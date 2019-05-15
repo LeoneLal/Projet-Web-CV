@@ -303,6 +303,14 @@ form div:last-child input{
         padding-left: 8%;
     }
 }
+@media(max-width:1400px){
+    #Education div div{
+        display: block;
+        width: 50%;
+    }
+    
+}
+
 @media(max-width:995px){
     #Education div div{
         display:grid;
@@ -311,6 +319,10 @@ form div:last-child input{
         padding: 0px;
         margin: 0px;
     }
+    #Education div{
+        
+    }
+    
     #Experience div div{
         display: grid;
         width: 100%;
@@ -321,11 +333,12 @@ form div:last-child input{
     }
     #Experience img{
         margin: 0px;
-        width: 50%;
-        margin-left: 25%;
+        width: 25%;
+        padding-left: 40%;
+        padding-right: 40%
     }
     #Experience div:hover img{
-        margin-left: 42%
+        margin-left: 4%
     }
     #presentation div div{
         display: grid;
