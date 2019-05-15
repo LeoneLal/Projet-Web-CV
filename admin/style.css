@@ -1,0 +1,100 @@
+html{
+    scroll-behavior: smooth;
+}
+body{
+    margin: 0px;
+    background-color: #2d2d28;
+}
+main{
+    width: 100%;
+}
+h1{
+    font-size: 40px;
+    text-align: center;
+    color: aliceblue;
+    font-family: 'Acme', sans-serif;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+.liens{
+	width: 300px;
+	height: 300px;
+    background-color: #30a1aa;
+    color: aliceblue;
+    text-align: center;
+    display: inline-block;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 25px;
+    margin-top:20%
+}
+.liens h2 {
+    margin:  25%;
+}
+section{
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+.formulaire{
+    text-align: center;
+    color: aliceblue;
+    font-size: 50px;
+    padding-bottom: 2%;
+    padding-top: 2%;
+}
+
+#form{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th,td{
+    color: aliceblue;
+}
+table{
+    border: 5px;
+    border-style: solid;
+    border-color: #30a1aa;
+    background-color:#353535 ;
+}
+img{
+    width: 70px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+#reed{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    padding-bottom: 5%;
+    
+}
+
+article{
+    background-color: grey; 
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+article:first-child{
+    width: 24%;
+    margin-top: 2%;
+    
+}
+article:first-child p{
+    padding-bottom: 8%;
+    padding-top: 8%;
+    text-align: center;
+    color: aliceblue;
+    font-size: 25px;
+    
+}
+article:first-child h3{
+    padding-top: 3% ;
+    text-align: center;
+}
+article:last-child{
+    width: 50%;
+    color: aliceblue;
+    font-size: 25px;
+}
