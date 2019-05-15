@@ -54,7 +54,9 @@ p{
 #accueil{
     background-image: url(photos/road.jpg);
     background-size: contain;
-    padding-bottom: 20%
+    padding-bottom: 20%;
+    padding-right: 20%;
+
 }
 #presentation{
     background-color: #2d2d28;
@@ -314,14 +316,16 @@ form div:last-child input{
 @media(max-width:995px){
     #Education div div{
         display:grid;
+        width: 105%;
     }
     #Education p{
         padding: 0px;
         margin: 0px;
     }
-    #Education div{
-        
+    #presentation div div h3:first-child{
+        font-size: 40px;
     }
+
     
     #Experience div div{
         display: grid;
@@ -347,12 +351,21 @@ form div:last-child input{
     }
     #presentation p{
         padding: 0px;
+        
     }
     #presentation div div:hover h3{
         padding: 0px;
         padding-top: 5%
     }
+    #projet div {
+        
+        
+        
+    }
     #contact div>div{
         margin-left: 10%;
+    }
+    #message {
+        width: 80%;
     }
 }
