@@ -6,7 +6,7 @@
     <meta name="description" content="Portfolio de Léone Lalloué, 18 ans actuellemnt en recherch de stage">
     <meta name="keywords" content="Portfolio CV Stage Etudiante Informatique HTML CSS Ecole Entreprise Projet ">
 
-    <link rel="stylesheet" style="text/css" href="style.css">
+    <link rel="stylesheet" style="text/css" href="styleadmin.css">
     <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 

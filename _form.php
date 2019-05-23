@@ -1,3 +1,20 @@
+<?php
+$dsn = 'pgsql:dbname=projet_web;host=127.0.0.1';
+$user = 'php';
+$password = 'azerty-85';
+
+try {
+    $dbh = new PDO($dsn, $user, $password);
+} catch (PDOException $e) {
+    echo 'Connexion échouée : '.$e->getMessage();
+}
+
+$sth = $dbh->query("
+    SELECT id, nom_contact, prenom_contact, email, message
+FROM contact
+
+    ");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,13 +23,13 @@
     <meta name="description" content="Portfolio de Léone Lalloué, 18 ans actuellemnt en recherch de stage">
     <meta name="keywords" content="Portfolio CV Stage Etudiante Informatique HTML CSS Ecole Entreprise Projet ">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" style="text/css" href="style.css">
+    <link rel="stylesheet" style="text/css" href="styleadmin.css">
     <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 
 </head>
 <body>
-<a href="index.php"><img src="../photos/arrow.png"></a>
+<a href="indexadmin.php"><img src="../photos/arrow.png"></a>
 <h2 class="formulaire">Réponses formulaire de contact</h2>
 <div id="form">
     <table class="table">
@@ -25,24 +42,18 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto.mark@mdo.com</td>
-            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton.jacob@fat.com</td>
-            <td>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird.larry@twitta.com</td>
-            <td>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</td>
-        </tr>
+        <?php
+        while ($row = $sth->fetch(PDO::FETCH_ASSOC)):
+            ?>
+            <tr>
+                <th scope="row"><?= $row['id']; ?></th>
+                <td><?= $row['nom_contact']; ?>/ <?= $row['prenom_contact']; ?></td>
+                <td><?= $row['email']; ?></td>
+                <td><?= $row['message']; ?></td>
+            </tr>
+        <?php
+        endwhile;
+        ?>
         </tbody>
     </table>
 </div>
