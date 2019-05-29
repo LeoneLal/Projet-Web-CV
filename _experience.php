@@ -1,3 +1,32 @@
+<?php
+require_once '_connexion.php';
+
+if (isset($_POST['envoyer']) && !empty($_POST['metier']) && !empty($_POST['entreprise']) && !empty($_POST['dated']) && !empty($_POST['datef']) && !empty($_POST['lien'])) {
+    $sth= $dbh->prepare("
+    INSERT INTO experiences(nom_emploie,entreprise_emploie, date_debut_emploie, date_fin_emploie, photo_emploie)
+    VALUES(:metier,:entreprise,:dated,:datef,:lien)
+");
+    $sth->bindValue('metier', $_POST['metier']);
+    $sth->bindValue('entreprise', $_POST['entreprise']);
+    $sth->bindValue('dated', $_POST['dated']);
+    $sth->bindValue('datef', $_POST['datef']);
+    $sth->bindValue('lien', $_POST['lien']);
+    $sth->execute();
+};
+
+if (isset($_POST['envoyer']) && !empty($_POST['metier']) && !empty($_POST['entreprise']) && !empty($_POST['dated']) && empty($_POST['datef']) && !empty($_POST['lien'])) {
+    $sth= $dbh->prepare("
+    INSERT INTO experiences(nom_emploie,entreprise_emploie, date_debut_emploie, date_fin_emploie, photo_emploie)
+    VALUES(:metier,:entreprise,:dated, Travail en cours,:lien)
+");
+    $sth->bindValue('metier', $_POST['metier']);
+    $sth->bindValue('entreprise', $_POST['entreprise']);
+    $sth->bindValue('dated', $_POST['dated']);
+    $sth->bindValue('lien', $_POST['lien']);
+    $sth->execute();
+};
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,22 +52,29 @@
         <a href="_contact.php"><p>Section Contact</p></a>
     </article>
     <article>
-        <form>
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Lien vers la photo</label>
+                <input type="text" class="form-control" name="lien" id="lien">
+            </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Date début</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <input type="date" class="form-control" name="dated" id="dated">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Date fin</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <input type="date"class="form-control" name="datef" id="datef">
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Métier</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <textarea name="metier" class="form-control" id="metier"></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Entreprise</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <textarea name="entreprise" class="form-control" id="entreprise"></textarea>
+            </div>
+            <div>
+                <input type="submit" class="form-control" name="envoyer" value="Envoyer"/>
             </div>
         </form>
     </article>

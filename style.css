@@ -147,6 +147,9 @@ h3{
     display: block;
     font-size: 25px
 }
+#Experience div:hover div{
+    height: 300px;
+}
 #Education{
     background-color: #2d2d28;
     padding-bottom: 5%;

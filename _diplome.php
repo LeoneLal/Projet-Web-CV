@@ -1,3 +1,20 @@
+<?php
+require_once '_connexion.php';
+
+if(isset($_POST['envoyer']) && !empty($_POST['icone']) && !empty($_POST['diplome']) && !empty($_POST['detail'])) {
+    $sth = $dbh->prepare("
+    INSERT INTO diplomes(icone, diplome, detail)
+    VALUES (:icone, :diplome, :detail)
+    ");
+    $sth->bindValue('icone', $_POST['icone']);
+    $sth->bindValue('diplome', $_POST['diplome']);
+    $sth->bindValue('detail', $_POST['detail']);
+    $sth->execute();
+}
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,20 +40,24 @@
         <a href="_contact.php"><p>Section Contact</p></a>
     </article>
     <article>
-        <form>
+        <form action="" method="post">
             <div class="form-group">
-                <label for="icone">Icône représentative (JPG, PNG ou GIF | max. 15 Ko) :</label><br />
-                <input type="file" name="icone" id="icone" /><br />
+                <label for="icone">Icône représentative :</label><br />
+                <input type="text" class="form-control" name="icone" id="icone" /><br />
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Nom Diplôme</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <textarea name="diplome" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Détail</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <textarea name="detail" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+            </div>
+            <div>
+                <input type="submit" class="form-control" name="envoyer" value="ENVOYER" />
             </div>
         </form>
     </article>
 </section>
 </body>
+</html>

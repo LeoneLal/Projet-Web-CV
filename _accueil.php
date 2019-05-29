@@ -1,3 +1,24 @@
+
+<?php
+require_once '_connexion.php';
+
+if(isset($_POST['envoyer'])&& !empty($_POST['prenom_acc']) && !empty($_POST['formation'])){
+    $sth1 = $dbh->prepare("
+    
+    UPDATE accueil
+    SET prenom_acc=:prenom_acc, formation=:formation
+    WHERE id=1 
+    
+    ");
+
+    $sth1->bindValue('prenom_acc' ,$_POST['prenom_acc']);
+    $sth1->bindValue('formation' ,$_POST['formation']);
+    $sth1->execute();
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,14 +44,17 @@
         <a href="_contact.php"><p>Section Contact</p></a>
     </article>
     <article>
-        <form>
+        <form action="" method="post">
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Nom / Prénom</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <textarea class="form-control" name="prenom_acc" id="exampleFormControlTextarea1" rows="2"></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Formation</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <textarea class="form-control" name="formation" id="exampleFormControlTextarea1" rows="2"></textarea>
+            </div>
+            <div>
+                <input type="submit" class="form-control" name="envoyer" value="ENVOYER" />
             </div>
         </form>
     </article>

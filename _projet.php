@@ -1,3 +1,21 @@
+<?php
+require_once '_connexion.php';
+
+if(isset($_POST['envoyer']) && !empty($_POST['image']) && !empty($_POST['liensite']) && !empty($_POST['descriptionsite']) && !empty($_POST['technosite'])){
+    $sth = $dbh->prepare("
+    INSERT INTO projet(image, liensite,description, technique)
+    VALUES(:image, :liensite, :descriptionsite, :technosite)
+    ");
+    $sth->bindValue('image', $_POST['image']);
+    $sth->bindValue('liensite', $_POST['liensite']);
+    $sth->bindValue('descriptionsite', $_POST['descriptionsite']);
+    $sth->bindValue('technosite', $_POST['technosite']);
+    $sth->execute();
+}
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,18 +41,25 @@
         <a href="_contact.php"><p>Section Contact</p></a>
     </article>
     <article>
-        <form>
+        <form action="" method="post">
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">Nom du projet</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <label for="image">Lien image du site :</label>
+                <input type="text" name="image" class="form-control" id="image"/>
             </div>
             <div class="form-group">
-                <label for="icone">Photo du projet (JPG, PNG ou GIF | max. 15 Ko) :</label><br />
-                <input type="file" name="icone" id="icone" /><br />
+                <label for="Lien">Lien vers le site :</label>
+                <input type="text" name="liensite" class="form-control" id="liensite"/>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">Lien vers le projet</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <label for="Desc">Description du projet :</label>
+                <input type="text" name="descriptionsite" class="form-control" id="descriptionsite"/>
+            </div>
+            <div class="form-group">
+                <label for="Techno">Techno utilisée :</label>
+                <input type="text" name="technosite" class="form-control" id="technosite"/>
+            </div>
+            <div>
+                <input type="submit" class="form-control" name="envoyer" value="Envoyer"/>
             </div>
         </form>
     </article>

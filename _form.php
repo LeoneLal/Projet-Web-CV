@@ -47,7 +47,7 @@ FROM contact
             ?>
             <tr>
                 <th scope="row"><?= $row['id']; ?></th>
-                <td><?= $row['nom_contact']; ?>/ <?= $row['prenom_contact']; ?></td>
+                <td><?= $row['nom_contact']; ?> / <?= $row['prenom_contact']; ?></td>
                 <td><?= $row['email']; ?></td>
                 <td><?= $row['message']; ?></td>
             </tr>

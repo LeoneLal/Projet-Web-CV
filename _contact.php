@@ -1,3 +1,22 @@
+<?php
+require_once '_connexion.php';
+
+if (isset($_POST['envoyer']) && !empty($_POST['icone']) && !empty($_POST['ecole']) && !empty($_POST['tel']) && !empty($_POST['mail']) && !empty($_POST['cv'])){
+    $sth = $dbh->prepare("
+
+    UPDATE page_formulaire
+    SET photo_form=:icone, ecole=:ecole, telephone=:tel, mail=:mail, cv=:cv
+    WHERE id_form=1
+    
+    ");
+    $sth->bindValue('icone', $_POST['icone']);
+    $sth->bindValue('ecole', $_POST['ecole']);
+    $sth->bindValue('tel', $_POST['tel']);
+    $sth->bindValue('mail', $_POST['mail']);
+    $sth->bindValue('cv', $_POST['cv']);
+    $sth->execute();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,31 +43,29 @@
 
     </article>
     <article>
-        <form>
+        <form action="" method="post">
             <div class="form-group">
                 <label for="icone">Photo de profil (JPG, PNG ou GIF | max. 15 Ko) :</label><br/>
-                <input type="file" name="icone" id="icone" /><br/>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Nom / Prénom</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <input class="form-control"  type="photo" name="icone" id="icone" />
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Ecole</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <textarea class="form-control" name="ecole" id="ecole" rows="2"></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Numéro de téléphone</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <textarea class="form-control" name="tel" id="tel" rows="2"></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Email</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <textarea class="form-control" name="mail" id="mail" rows="2"></textarea>
             </div>
             <div class="form-group">
-                <label for="mon_fichier">Fichier (tous formats | max. 1 Mo) :</label><br/>
-                <input type="hidden" name="MAX_FILE_SIZE" value="1048576"/>
-                <input type="file" name="mon_fichier" id="mon_fichier" /><br />
+                <label for="mon_fichier">Lien vers le CV :</label><br/>
+                <input class="form-control"  type="text" name="cv" id="cv"/>
+            </div>
+            <div>
+                <input class="form-control"  type="submit" name="envoyer" value="ENVOYER" />
             </div>
         </form>
     </article>

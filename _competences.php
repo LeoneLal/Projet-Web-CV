@@ -1,3 +1,17 @@
+<?php
+require_once '_connexion.php';
+
+if (isset($_POST['envoyer']) && !empty($_POST['nom'])) {
+    $sth= $dbh->prepare("
+    INSERT INTO competances(nom_comp,type_comp)
+    VALUES(:nom,:typecomp)
+");
+    $sth->bindValue('nom', $_POST['nom']);
+    $sth->bindValue('typecomp', $_POST['typecomp']);
+    $sth->execute();
+};
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,22 +37,13 @@
         <a href="_contact.php"><p>Section Contact</p></a>
     </article>
     <article>
-        <form>
+        <form action="" method="post">
             <div class="form-group">
-                <label for="exampleFormControlTextarea1">Langue</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">HardSkill</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Softskill</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Nouvelle zone</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <label for="nom">Compétance</label>
+                <input name="nom" class="form-control" id="nom">
+                <label for="typecomp">Type de compétance</label>
+                <input name="typecomp" class="form-control" id="typecomp">
+                <input type="submit" class="form-control" name="envoyer" value="Envoyer" />
             </div>
         </form>
     </article>
