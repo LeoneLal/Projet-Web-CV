@@ -66,13 +66,12 @@ $sth7 = $dbh->query("
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio de Léone Lalloué, 18 ans actuellemnt en recherch de stage">
-    <meta name="keywords" content="Portfolio CV Stage Etudiante Informatique HTML CSS Ecole Entreprise Projet ">
+    <meta name="keywords" content="Portfolio CV Léone Lalloué pour Recheche de stage">
     <link rel="stylesheet" style="text/css" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 </head>
 <body>
-<main>
     <nav>
         <a href="#accueil"><li>Présentation</li></a>
         <a href="#presentation"><li>Compétences</li></a>
@@ -218,6 +217,5 @@ $sth7 = $dbh->query("
             </div>
         </div>
     </section>
-</main>
 </body>
 </html>

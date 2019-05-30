@@ -5,7 +5,7 @@
 -- Dumped from database version 11.1
 -- Dumped by pg_dump version 11.1
 
--- Started on 2019-05-13 14:29:21
+-- Started on 2019-05-30 23:14:01
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -28,7 +28,7 @@ CREATE SCHEMA public;
 ALTER SCHEMA public OWNER TO postgres;
 
 --
--- TOC entry 2876 (class 0 OID 0)
+-- TOC entry 2882 (class 0 OID 0)
 -- Dependencies: 3
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
 --
@@ -48,8 +48,7 @@ SET default_with_oids = false;
 CREATE TABLE public.accueil (
     id integer NOT NULL,
     prenom_acc character(50) NOT NULL,
-    formation character varying(255) NOT NULL,
-    message character varying(255) NOT NULL
+    formation character varying(255) NOT NULL
 );
 
 
@@ -72,7 +71,7 @@ CREATE SEQUENCE public.accueil_id_seq
 ALTER TABLE public.accueil_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2877 (class 0 OID 0)
+-- TOC entry 2883 (class 0 OID 0)
 -- Dependencies: 198
 -- Name: accueil_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -111,7 +110,7 @@ CREATE SEQUENCE public.competances_id_seq
 ALTER TABLE public.competances_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2878 (class 0 OID 0)
+-- TOC entry 2884 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: competances_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -152,7 +151,7 @@ CREATE SEQUENCE public.contact_id_seq
 ALTER TABLE public.contact_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2879 (class 0 OID 0)
+-- TOC entry 2885 (class 0 OID 0)
 -- Dependencies: 196
 -- Name: contact_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -167,11 +166,9 @@ ALTER SEQUENCE public.contact_id_seq OWNED BY public.contact.id;
 
 CREATE TABLE public.diplomes (
     id integer NOT NULL,
-    ecole character varying(255) NOT NULL,
-    mention character varying(255),
-    nom_diplome character varying(255) NOT NULL,
-    date_debut_scolarisation date NOT NULL,
-    date_fin_scolarisation date NOT NULL
+    icone character varying(255),
+    diplome character varying(255),
+    detail character varying(255)
 );
 
 
@@ -194,7 +191,7 @@ CREATE SEQUENCE public.diplomes_id_seq
 ALTER TABLE public.diplomes_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2880 (class 0 OID 0)
+-- TOC entry 2886 (class 0 OID 0)
 -- Dependencies: 204
 -- Name: diplomes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -211,9 +208,9 @@ CREATE TABLE public.experiences (
     id integer NOT NULL,
     nom_emploie character varying(255) NOT NULL,
     entreprise_emploie character varying(255) NOT NULL,
-    detail_emploie character varying(255),
     date_debut_emploie date NOT NULL,
-    date_fin_emploie date NOT NULL
+    photo_emploie character varying(255),
+    date_fin_emploie date
 );
 
 
@@ -236,7 +233,7 @@ CREATE SEQUENCE public.experiences_id_seq
 ALTER TABLE public.experiences_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2881 (class 0 OID 0)
+-- TOC entry 2887 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: experiences_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -251,8 +248,11 @@ ALTER SEQUENCE public.experiences_id_seq OWNED BY public.experiences.id;
 
 CREATE TABLE public.page_formulaire (
     id_form integer NOT NULL,
-    photo_form oid NOT NULL,
-    infos_form character varying NOT NULL
+    photo_form character varying(255) NOT NULL,
+    ecole character varying(255),
+    telephone character varying(255),
+    mail character varying(255),
+    cv character varying(255)
 );
 
 
@@ -275,7 +275,7 @@ CREATE SEQUENCE public.page_formulaire_id_form_seq
 ALTER TABLE public.page_formulaire_id_form_seq OWNER TO postgres;
 
 --
--- TOC entry 2882 (class 0 OID 0)
+-- TOC entry 2888 (class 0 OID 0)
 -- Dependencies: 206
 -- Name: page_formulaire_id_form_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -284,7 +284,22 @@ ALTER SEQUENCE public.page_formulaire_id_form_seq OWNED BY public.page_formulair
 
 
 --
--- TOC entry 2721 (class 2604 OID 24892)
+-- TOC entry 208 (class 1259 OID 24968)
+-- Name: projet; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.projet (
+    image character varying(255),
+    liensite character varying(255),
+    description character varying(255),
+    technique character varying(255)
+);
+
+
+ALTER TABLE public.projet OWNER TO postgres;
+
+--
+-- TOC entry 2726 (class 2604 OID 24892)
 -- Name: accueil id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -292,7 +307,7 @@ ALTER TABLE ONLY public.accueil ALTER COLUMN id SET DEFAULT nextval('public.accu
 
 
 --
--- TOC entry 2722 (class 2604 OID 24903)
+-- TOC entry 2727 (class 2604 OID 24903)
 -- Name: competances id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -300,7 +315,7 @@ ALTER TABLE ONLY public.competances ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 2720 (class 2604 OID 24881)
+-- TOC entry 2725 (class 2604 OID 24881)
 -- Name: contact id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -308,7 +323,7 @@ ALTER TABLE ONLY public.contact ALTER COLUMN id SET DEFAULT nextval('public.cont
 
 
 --
--- TOC entry 2724 (class 2604 OID 24922)
+-- TOC entry 2729 (class 2604 OID 24922)
 -- Name: diplomes id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -316,7 +331,7 @@ ALTER TABLE ONLY public.diplomes ALTER COLUMN id SET DEFAULT nextval('public.dip
 
 
 --
--- TOC entry 2723 (class 2604 OID 24911)
+-- TOC entry 2728 (class 2604 OID 24911)
 -- Name: experiences id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -324,7 +339,7 @@ ALTER TABLE ONLY public.experiences ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 2725 (class 2604 OID 24933)
+-- TOC entry 2730 (class 2604 OID 24933)
 -- Name: page_formulaire id_form; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -332,120 +347,145 @@ ALTER TABLE ONLY public.page_formulaire ALTER COLUMN id_form SET DEFAULT nextval
 
 
 --
--- TOC entry 2862 (class 0 OID 24889)
+-- TOC entry 2867 (class 0 OID 24889)
 -- Dependencies: 199
 -- Data for Name: accueil; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.accueil (id, prenom_acc, formation, message) FROM stdin;
-2	Léone Lalloué                                     	Informarique Ynov Campus	Je suis actuellement en recherche de stage
+COPY public.accueil (id, prenom_acc, formation) FROM stdin;
+1	Léone Lalloué                                     	Informatique Ynov Nantes\r\n
 \.
 
 
 --
--- TOC entry 2864 (class 0 OID 24900)
+-- TOC entry 2869 (class 0 OID 24900)
 -- Dependencies: 201
 -- Data for Name: competances; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.competances (id, nom_comp, type_comp) FROM stdin;
-3	Patiente	SoftSkill           
-4	SQL	HardSkill           
-5	Anglais	Langues             
+10	Anglais	Langue              
+11	HTML CSS	Hardskill           
+12	Patiente	Softskill           
+13	PHP	Hardskill           
+14	SQL	Hardskill           
+15	Espagnol	Langue              
+16	Français	Langue              
+17	Organisée	Softskill           
+18	Méticuleuse 	Softskill           
 \.
 
 
 --
--- TOC entry 2860 (class 0 OID 24878)
+-- TOC entry 2865 (class 0 OID 24878)
 -- Dependencies: 197
 -- Data for Name: contact; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.contact (id, nom_contact, prenom_contact, email, message) FROM stdin;
-1	Lalloué                                           	Léone                                             	leone.lalloue@ynov.com	Hello World test réponse formulaire
+12	Lalloué                                           	Léone                                             	leone@lalloue.fr	Test1
+13	Lalloué                                           	Solange                                           	croque@carottes	bla bla bla
+14	Plottu                                            	Seb                                               	chapeau@cowboy	Pom
+15	Lalloué                                           	Maud                                              	maud@lalloue	Coucou !\r\n
 \.
 
 
 --
--- TOC entry 2868 (class 0 OID 24919)
+-- TOC entry 2873 (class 0 OID 24919)
 -- Dependencies: 205
 -- Data for Name: diplomes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.diplomes (id, ecole, mention, nom_diplome, date_debut_scolarisation, date_fin_scolarisation) FROM stdin;
-1	Saint Joseph Chateaubriant	Mention Très Bien	Baccaloreat	2015-09-01	2018-06-08
+COPY public.diplomes (id, icone, diplome, detail) FROM stdin;
+2	photos/permis.png	Permis B	Conduite accompagnée
+3	photos/bac.jpg	Bac Economique et Social	Spécialité Maths Mention très bien
+4	photos/psc1.jpg	PSC1	Diplome de prévention et secours civique
 \.
 
 
 --
--- TOC entry 2866 (class 0 OID 24908)
+-- TOC entry 2871 (class 0 OID 24908)
 -- Dependencies: 203
 -- Data for Name: experiences; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.experiences (id, nom_emploie, entreprise_emploie, detail_emploie, date_debut_emploie, date_fin_emploie) FROM stdin;
-1	Opératrice de saisie de données	CER France	\N	2018-07-11	2018-09-14
+COPY public.experiences (id, nom_emploie, entreprise_emploie, date_debut_emploie, photo_emploie, date_fin_emploie) FROM stdin;
+4	Serveuse	Café chez Gaëlle	2015-09-15	photos/bar.png	2020-12-31
+5	Saisie Comptable	Café chez Gaëlle	2017-07-02	photos/compta.png	2020-12-31
+6	Opératrice de saisie	Cer France - Chateaubriant	2018-07-11	photos/secr.png	2018-09-14
 \.
 
 
 --
--- TOC entry 2870 (class 0 OID 24930)
+-- TOC entry 2875 (class 0 OID 24930)
 -- Dependencies: 207
 -- Data for Name: page_formulaire; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.page_formulaire (id_form, photo_form, infos_form) FROM stdin;
-1	24939	Léone Lalloué
+COPY public.page_formulaire (id_form, photo_form, ecole, telephone, mail, cv) FROM stdin;
+1	photos/photo.PNG	Nantes Ynov Campus	07-71-62-33-87	leone.lalloue@ynov.com	moncv.pdf
 \.
 
 
 --
--- TOC entry 2883 (class 0 OID 0)
+-- TOC entry 2876 (class 0 OID 24968)
+-- Dependencies: 208
+-- Data for Name: projet; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.projet (image, liensite, description, technique) FROM stdin;
+photos/premier.PNG	https://tender-babbage-d44c6f.netlify.com/	Premier Portfolio en	HTML CSS
+photos/zelda.PNG	rendre/index.html	Premier site réalisé avec du 	Javascript
+\.
+
+
+--
+-- TOC entry 2889 (class 0 OID 0)
 -- Dependencies: 198
 -- Name: accueil_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.accueil_id_seq', 2, true);
+SELECT pg_catalog.setval('public.accueil_id_seq', 1, false);
 
 
 --
--- TOC entry 2884 (class 0 OID 0)
+-- TOC entry 2890 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: competances_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.competances_id_seq', 5, true);
+SELECT pg_catalog.setval('public.competances_id_seq', 18, true);
 
 
 --
--- TOC entry 2885 (class 0 OID 0)
+-- TOC entry 2891 (class 0 OID 0)
 -- Dependencies: 196
 -- Name: contact_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.contact_id_seq', 1, true);
+SELECT pg_catalog.setval('public.contact_id_seq', 15, true);
 
 
 --
--- TOC entry 2886 (class 0 OID 0)
+-- TOC entry 2892 (class 0 OID 0)
 -- Dependencies: 204
 -- Name: diplomes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.diplomes_id_seq', 1, true);
+SELECT pg_catalog.setval('public.diplomes_id_seq', 4, true);
 
 
 --
--- TOC entry 2887 (class 0 OID 0)
+-- TOC entry 2893 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: experiences_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.experiences_id_seq', 1, true);
+SELECT pg_catalog.setval('public.experiences_id_seq', 6, true);
 
 
 --
--- TOC entry 2888 (class 0 OID 0)
+-- TOC entry 2894 (class 0 OID 0)
 -- Dependencies: 206
 -- Name: page_formulaire_id_form_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -454,7 +494,7 @@ SELECT pg_catalog.setval('public.page_formulaire_id_form_seq', 1, true);
 
 
 --
--- TOC entry 2729 (class 2606 OID 24897)
+-- TOC entry 2734 (class 2606 OID 24897)
 -- Name: accueil accueil_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -463,7 +503,7 @@ ALTER TABLE ONLY public.accueil
 
 
 --
--- TOC entry 2731 (class 2606 OID 24905)
+-- TOC entry 2736 (class 2606 OID 24905)
 -- Name: competances competances_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -472,7 +512,7 @@ ALTER TABLE ONLY public.competances
 
 
 --
--- TOC entry 2727 (class 2606 OID 24886)
+-- TOC entry 2732 (class 2606 OID 24886)
 -- Name: contact contact_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -481,7 +521,7 @@ ALTER TABLE ONLY public.contact
 
 
 --
--- TOC entry 2735 (class 2606 OID 24927)
+-- TOC entry 2740 (class 2606 OID 24927)
 -- Name: diplomes diplomes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -490,7 +530,7 @@ ALTER TABLE ONLY public.diplomes
 
 
 --
--- TOC entry 2733 (class 2606 OID 24916)
+-- TOC entry 2738 (class 2606 OID 24916)
 -- Name: experiences experiences_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -499,7 +539,7 @@ ALTER TABLE ONLY public.experiences
 
 
 --
--- TOC entry 2737 (class 2606 OID 24938)
+-- TOC entry 2742 (class 2606 OID 24938)
 -- Name: page_formulaire page_formulaire_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -507,7 +547,7 @@ ALTER TABLE ONLY public.page_formulaire
     ADD CONSTRAINT page_formulaire_pkey PRIMARY KEY (id_form);
 
 
--- Completed on 2019-05-13 14:29:22
+-- Completed on 2019-05-30 23:14:01
 
 --
 -- PostgreSQL database dump complete
