@@ -22,12 +22,12 @@ Mon site est un site one page on scroll donc pour se déplacer. Le site est divi
 
 ### Fonctionnement de l'administration
 
-La partie administration est divisée en 2 partie. Une pour la lecture des messages du formulaire de contact et une pour la modification du site 
+La partie administration est divisée en 2 partie. Une pour la lecture des messages du formulaire de contact et une pour la modification du site. La personne doit remplir entièrement les formulaires pour que ceux-ci soit envoyés en base de donnée
 
 ### Langages utilisés
 HTML/CSS,  PHP, SQL 
 ### Organisation du dossier
-Sur le dossier sont présents le code HTML/CSS la base de données en SQL dans un dossier présent dans le git nous avons aussi toutes les images du site.
+Sur le dossier sont présents le code PHP de chaques pages, le CSS du site ainsi que la base de données en SQL dans un dossier présent dans le git nous avons aussi toutes les images du site.
 
 ## Utiliser le GIT
 Pour cloner le projet il faut faire :
